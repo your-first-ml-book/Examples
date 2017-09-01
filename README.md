@@ -1,2 +1,9 @@
-# chapter10
-codes for chapter10
+## 처음 배우는 머신러닝
+머신러닝 기초 지식에서 실전 예제와 문제 해결까지
+
+* 지은이: 김승연, 정용주
+* 감수 권정민
+* 펴낸이 김태헌
+* 펴낸곳 한빛미디어 (주)
+
+Published by HANBIT Media, Inc. Printed in Korea Copyright © 2017 김승연, 정용주 & HANBIT Media, Inc. 이 책의 저작권은 김승연, 정용주와 한빛미디어 (주)에 있습니다. 저작권법에 의해 보호를 받는 저작물이므로 무단전재와 복제를 금합니다.
