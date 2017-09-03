@@ -23,15 +23,9 @@ def read_text(fin):
             _ = int(line[0])
             corpus_li.append(' '.join(mecab.nouns(line)) + '\n')
 
-            # pos_li = ['%s\t%s\n' % (v[0], v[1]) for v in mecab.pos(line)]
-            # result_lines.extend(pos_li)
         except ValueError:
             if ord(line[0]) >= hangul_start and ord(line[0]) <= hangul_end:
-                # result_lines.append(line)
                 corpus_li.append(' '.join(mecab.nouns(line))+'\n')
-                # pos_li = ['%s\t%s\n' % (v[0], v[1]) for v in mecab.pos(line)]
-                # result_lines.extend(pos_li)
-
             else:
                 pass
 
