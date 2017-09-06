@@ -5,8 +5,7 @@ import unicodedata
 from konlpy.tag import Mecab
 from gensim.models import Word2Vec
 
-
-#parameters
+# 모델의 파라미터들입니다.
 WINDOW=5
 EMBEDDING_SIZE=200
 BATCH_SIZE = 10000
@@ -17,7 +16,7 @@ def read_text(fin):
     corpus_li = []
     mecab = Mecab(dicpath='/opt/local/lib/mecab/dic/mecab-ko-dic')
     for line in open(fin):
-        # 깨지는 글자를 처리하기 위해 unicodedata.normalize 함수를 이용해 
+        # 깨지는 글자를 처리하기 위해 unicodedata.normalize 함수를 이용해
         # NFKC로변환합니다.
         line = unicodedata.normalize('NFKC', line)
         try:
@@ -34,7 +33,6 @@ def read_text(fin):
     print('# of lines in corpus',len(corpus_li))
     return(corpus_li)
 
-
 def train_word2vec(corpus_li, fout_model):
     # read_text에서 생성한 말뭉치를 이용해 word2vec을 학습시킵니다.
     model = Word2Vec(corpus_li, sg=1, size=EMBEDDING_SIZE, window=WINDOW, min_count=5, workers=3, batch_words=BATCH_SIZE, iter=ITER)
@@ -42,19 +40,14 @@ def train_word2vec(corpus_li, fout_model):
     model.save(fout_model)
     return(model)
 
-
-
 # 전처리된 파일을 한번에 읽어 들이기 위한 정규식
-input_pattern = '/Users/forumai/Downloads/kor_wiki/kowiki-latest-pages-articles.xml-88.txt'
+input_pattern = '파일위치/korean_wiki/kowiki-latest-pages-articles.xml-88.txt'
 fin_li = glob.glob(input_pattern)
 
 for fin in fin_li:
     corpus_li = read_text(fin)
 
 # 모델학습
-model = train_word2vec(corpus_li, '/Users/forumai/Downloads/kor_wiki/test_model.txt')
+model = train_word2vec(corpus_li, '파일위치/korean_wiki/test_model.txt')
 print(model.most_similar('프랑스', topn=20))
 print(model.most_similar(positive=['한국','파리'], negative=['서울']))
-
-
-
