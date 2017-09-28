@@ -50,12 +50,10 @@ for movie_info in movie_info_li[:100]:
     movie_plot_li.append(movie_plot)
     movie_title_li.append(movie_title)
     
-    
 print('download complete: %d movie data downloaded'%(len(movie_title_li)))
 # 3개 이하의 문서에서 나오는 단어는 TF-IDF 계산에서 제외합니다. 스톱워드는 'english'로 합니다.
 vectorizer = TfidfVectorizer(min_df=3, stop_words='english')
 X = vectorizer.fit_transform(movie_plot_li)
-
 
 # TF-IDF로 변환한 키워드의 리스트
 # X의 0번 열에 해당하는 키워드가 feature_names[0]의 키워드입니다.
