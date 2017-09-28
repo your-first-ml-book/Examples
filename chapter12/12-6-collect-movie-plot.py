@@ -16,7 +16,7 @@ for movie_info in movie_info_li[:100]:
         movie_title_li.append('')
         movie_plot_li.append('')
 
-      else:
+    else:
         response = requests.get(movie_url)
         imdb_id = response.url.split('/')[-2]
         # print(imdb_id)
@@ -36,11 +36,11 @@ for movie_info in movie_info_li[:100]:
                 movie_title = ''
                 movie_plot = ''
 
-             try:
+            try:
                 movie_title = json.loads(movie_response.text)['Title']
                 movie_plot = json.loads(movie_response.text)['Plot']
                 #print(movie_response.text)
-             except KeyError:
+            except KeyError:
                 # API 결과의 예외 처리
                 print('incomplete json: %s' % (movie_info[0])))
                 movie_title = ''
@@ -49,13 +49,15 @@ for movie_info in movie_info_li[:100]:
     result_lines.append("%s\t%s\n" % (movie_title, movie_plot))
     movie_plot_li.append(movie_plot)
     movie_title_li.append(movie_title)
-        
+    
+    
 print('download complete: %d movie data downloaded'%(len(movie_title_li)))
 # 3개 이하의 문서에서 나오는 단어는 TF-IDF 계산에서 제외합니다. 스톱워드는 'english'로 합니다.
 vectorizer = TfidfVectorizer(min_df=3, stop_words='english')
+X = vectorizer.fit_transform(movie_plot_li)
+
 
 # TF-IDF로 변환한 키워드의 리스트
 # X의 0번 열에 해당하는 키워드가 feature_names[0]의 키워드입니다.
 feature_names = vectorizer.get_feature_names()
-X = vectorizer.fit_transform(movie_plot_li)
 
