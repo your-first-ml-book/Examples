@@ -38,9 +38,8 @@ def create_train_test_data(image_data, label_li):
     print("n_samples: %d" % n_samples) 
     print("n_features: %d" % n_features) 
     print("n_classes: %d" % n_classes)
-    # 사이킷런의 함수 train_test_split을 이용하여 학습셋과 평가셋을 나눕니다. X_train, X_test, y_train, y_test =
-    
-    train_test_split(X, y, test_size=0.25, random_state=42)
+    # 사이킷런의 함수 train_test_split을 이용하여 학습셋과 평가셋을 나눕니다. 
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
     return(X_train, X_test, y_train, y_test)
 
 def extract_features(X_train, X_test, n_components): 
