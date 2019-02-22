@@ -13,9 +13,7 @@ def read_data(fin):
     target_li = []
     data_li = []
     for line in open(fin):
-        working_dir = fin.split('/')[:-1]
         image_path, face_id = line.strip().split(';') 
-        image_path = '/'.join(working_dir) + '/' + image_path 
         target_name = image_path.split('/')[1]
         image_data = cv2.imread(image_path, cv2.COLOR_BGR2GRAY)
         data_li.append(image_data) # 이미지 데이터 
