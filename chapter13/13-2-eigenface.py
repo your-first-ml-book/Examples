@@ -14,7 +14,6 @@ def read_data(fin):
     data_li = []
     for line in open(fin):
         image_path, face_id = line.strip().split(';') 
-        target_name = image_path.split('/')[1]
         image_data = cv2.imread(image_path, cv2.COLOR_BGR2GRAY)
         data_li.append(image_data) # 이미지 데이터 
         target_li.append(int(face_id)) # 이미지 얼굴 번호
